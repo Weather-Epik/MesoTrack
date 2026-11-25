@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>MesoTrack v1.0 – Chaser Tactical Radar & Routing</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+        const leafletCss = document.createElement("link");
+        leafletCss.rel = "stylesheet";
+        leafletCss.href = "https://unpkg.com" + "/leaflet@1.9.4/dist/leaflet.css";
+        document.head.appendChild(leafletCss);
+    </script>
+</head>
+<body>
+<header class="hud-top">
+    <div class="brand">
+        <span class="pulse-dot" id="status-dot"></span>
+        <h1>MesoTrack <span class="badge">ROUTE HUD</span></h1>
+    </div>
+
+    <div class="live-metrics">
+        <div class="metric-box">
+            <span class="label" id="lbl-hud-status">STATUS</span>
+            <span class="value" id="storm-stage">MESOCYCLONE</span>
+        </div>
+        <div class="metric-box vs-highlight">
+            <span class="label">VORTEX-SCALE</span>
+            <span class="value" id="vs-display">VS-4 (145 mph)</span>
+        </div>
+        <div class="metric-box">
+            <span class="label" id="lbl-hud-route">ETA / ROUTE</span>
+            <span class="value" id="route-info">Calculating...</span>
+        </div>
+        <div class="metric-box">
+            <span class="label" id="lbl-hud-target">INTERCEPT TARGET</span>
+            <span class="value" id="intercept-coords">35.34°N, 97.48°W</span>
+        </div>
+    </div>
+
+    <div class="theme-control">
+        <button id="btn-gps" class="btn primary small">My GPS</button>
+        <select id="lang-select" aria-label="Language">
+            <option value="en" selected>EN</option>
+            <option value="de">DE</option>
+        </select>
+        <select id="theme-select">
+            <option value="night">Night Chase</option>
+            <option value="nexrad">NEXRAD Pro</option>
+            <option value="tactical">Tactical Green</option>
+            <option value="daylight">Daylight</option>
+        </select>
+    </div>
+</header>
+
+<main id="map"></main>
+
+<aside class="control-panel" id="control-panel">
+    <div class="panel-header">
+        <h2 id="lbl-panel-title">Cell Controls</h2>
+        <div style="display: flex; gap: 6px;">
+            <button id="btn-drop-here" class="btn small">Drop Here</button>
+            <button id="btn-toggle-panel" class="btn small">▼</button>
+        </div>
+    </div>
+
+    <div id="panel-body" style="display: flex; flex-direction: column; gap: 8px;">
+        <p class="hint-text" id="lbl-hint">Drag the <strong>↺ icon</strong> onto the supercell – road route updates live!</p>
+
+        <div class="slider-group">
+            <label>
+                <span id="txt-size">Cell Size (Radius):</span> <strong id="lbl-size">6 km</strong>
+            </label>
+            <input type="range" id="rng-size" min="2" max="25" value="6" />
+        </div>
+
+        <div class="slider-group">
+            <label>
+                <span id="txt-wind">Max Wind / Rotation:</span> <strong id="lbl-wind">145 mph</strong>
+            </label>
+            <input type="range" id="rng-wind" min="40" max="240" value="145" />
+        </div>
+
+        <div class="slider-group">
+            <label>
+                <span id="txt-speed">Storm Speed:</span> <strong id="lbl-speed">34 mph</strong>
+            </label>
+            <input type="range" id="rng-speed" min="5" max="120" value="55" />
+        </div>
+
+        <div class="slider-group">
+            <label>
+                <span id="txt-dir">Storm Motion:</span> <strong id="lbl-dir">45°</strong>
+            </label>
+            <input type="range" id="rng-dir" min="0" max="359" value="45" />
+        </div>
+
+        <div class="slider-group row-between">
+            <span id="txt-eta">Intercept Lead Time:</span>
+            <select id="sel-eta">
+                <option value="15">+15 min</option>
+                <option value="30" selected>+30 min</option>
+                <option value="45">+45 min</option>
+            </select>
+        </div>
+
+        <div class="slider-group row-between">
+            <span id="txt-spin">Rotation:</span>
+            <button id="btn-spin" class="btn small">Cyclonic (↺)</button>
+        </div>
+
+        <footer class="panel-footer">
+            <a id="repo-link" href="#" target="_blank" rel="noopener">
+                Vortex-Scale API by mrflims-storms ↗
+            </a>
+        </footer>
+    </div>
+</aside>
+
+<script>
+    document.getElementById("repo-link").href =
+        "https://github.com" + "/mrflims-storms/Vortexscale-Scale-for-stormchasing";
+
+    const leafletScript = document.createElement("script");
+    leafletScript.src = "https://unpkg.com" + "/leaflet@1.9.4/dist/leaflet.js";
+    leafletScript.onload = function () {
+        const appScript = document.createElement("script");
+        appScript.src = "app.js";
+        document.body.appendChild(appScript);
+    };
+    document.body.appendChild(leafletScript);
+</script>
+</body>
+</html>
