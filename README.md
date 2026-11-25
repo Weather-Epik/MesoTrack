@@ -37,8 +37,8 @@
 
 ## 🔗 Related Projects by `mrflims-storms`
 
-* **[Vortex-Scale (VS-Scale) & Calculator](https://github.com):** Open 30-mph step wind rating scale with APIs for JavaScript, Python, Roblox, and Minecraft.
-* **[PMW Vortex Scale (Modrinth)](https://modrinth.com):** Minecraft mod integrating the Vortex-Scale directly into ProtoManly's Weather anemometers.
+* **[Vortex-Scale (VS-Scale) & Calculator](https://github.com/mrflims-storms/Vortexscale-Scale-for-stormchasing):** Open 30-mph step wind rating scale with APIs for JavaScript, Python, Roblox, and Minecraft.
+* **[PMW Vortex Scale (Modrinth)](https://modrinth.com/mod/pmw-vortex-scale):** Minecraft mod integrating the Vortex-Scale directly into ProtoManly's Weather anemometers.
 
 ---
 
